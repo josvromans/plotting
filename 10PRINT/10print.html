@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plotting 10 print</title>
+    <style>
+    #fileInput {
+      display: none;
+    }
+
+    #selectedFiles {
+      margin-top: 10px;
+    }
+
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    #sidebar {
+      width: 202px;
+      background-color: lightgray;
+      padding: 18px;
+    }
+
+    #content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    input[type="text"],[type="number"] {
+      width: 100%;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 10px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    button#reset_images{
+      background-color: #555;
+      float:right;
+      width:40%;
+      padding: 5px 5px;
+    }
+    hr {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .footer {
+      margin-top: 100px;
+    }
+    </style>
+</head>
+<body>
+
+<div id="sidebar">
+
+    <h3>10 PRINT</h3>
+    <table>
+        <tr>
+            <td><label for="paper-type">Paper</label></td>
+            <td><select id="paper-type" onchange="setPaperStyle()">
+                <option value="square" selected="selected">Origami</option>
+                <option value="a4">A4</option>
+            </select><td>
+        </tr>
+        <tr>
+            <td><label for="mode">Mode</label></td>
+            <td><select id="mode">
+                <option value="square">Fill</option>
+                <option value="box" selected="selected">Square</option>
+                <option value="box2">2 Squares</option>
+                <option value="box6">6 Squares</option>
+
+            </select></td>
+        </tr>
+        <tr>
+            <td><label for="paper-width">Paper Width (mm)</label></td>
+            <td><input type="text" id="paper-width" placeholder="150" value="150" onChange="setPaperDimensions()"></td>
+        </tr>
+        <tr>
+            <td><label for="items">Items Per Row</label></td>
+            <td><input type="number" id="items" min="2" max="150" step="1" value="12"></td>
+        </tr>
+        <tr>
+            <td><label for="line-width">Line Width</label></td>
+            <td><input type="number" id="line-width" min=".1" max="30" step=".1" value=".6"></td>
+        </tr>
+        <tr>
+            <td><label for="draw-cutting-lines">Draw cutting lines</label></td>
+            <td><input type="checkbox" id="draw-cutting-lines" name="draw-cutting-lines"></td>
+        </tr>
+        <tr>
+            <td><label for="dots-only">Dots only</label></td>
+            <td><input type="checkbox" id="dots-only" name="dots-only"></td>
+        </tr>
+    </table>
+
+    <br>
+
+
+    <button onclick="generate()">Generate</button>
+    <button onclick="downloadSVG()">Download SVG</button>
+
+    <a id="link"></a>
+    <small><i>
+        <footer class="footer">&#169; <a href="http://www.josvromans.com">www.josvromans.com</a></footer>
+    </i></small>
+</div>
+
+<canvas id='C'></canvas>
+
+<script src="webapp_10print.js"></script>
+
+</body>
+</html>
