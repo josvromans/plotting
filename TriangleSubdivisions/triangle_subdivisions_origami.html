@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Symmetric Triangle Subdivisions</title>
+
+    <link rel="stylesheet" type="text/css" href="subdivision.css">
+    <script src="tri_subs_origami.js"></script>
+</head>
+<body>
+    <div class="menu">
+        <div>Strategy:</div>
+        <input id="strategy" value="0120110">
+
+        <div>Interations:</div>
+        <input type="number" placeholder="10" step="1" min="1" max="20" value="7" id="iterations">
+
+        <div>Line Colors:</div>
+        <input id="color0" type="color" value="#000000"/><input type="checkbox" id="cb0" checked><span>0</span>
+        <input id="color1" type="color" value="#000000"/><input type="checkbox" id="cb1" checked><span>1</span>
+        <input id="color2" type="color" value="#000000"/><input type="checkbox" id="cb2" checked><span>2</span>
+        <input id="color3" type="color" value="#000000"/><input type="checkbox" id="cb3" checked><span>3</span>
+        <input id="color4" type="color" value="#000000"/><input type="checkbox" id="cb4" checked><span>4</span>
+        <input id="color5" type="color" value="#000000"/><input type="checkbox" id="cb5" checked><span>5</span>
+
+        <div>Line Width:</div>
+        <input type="number" placeholder=".45" step=".01" min=".01" max="9" value=".45" id="line_width">
+
+        <div class="buttons">
+            <button id="start" title="Generate the subdivision. Keyboard shortcut: <ENTER>">Generate</button>
+            <button id="randomColors" title="Randomize the colors of the lines.">Randomize Colors</button>
+
+            <button id="random" title="Re-generate with a random strategy.">Random</button>
+            <button id="download" title="Save the current canvas as a png image.">Save Image</button>
+            <button id="download_svg" title="Save the current plot as several SVG files." onclick="download_svg_file()">Save SVGs</button>
+        </div>
+
+    </div>
+    <div style="width: 100%;">
+        <canvas id="canvas"></canvas>
+    </div>
+
+</body>
+</html>
