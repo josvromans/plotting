@@ -2,11 +2,6 @@
       display: none;
     }
 
-    #selectedFiles {
-      margin-top: 10px;
-    }
-
-
     body {
       margin: 0;
       padding: 0;
@@ -24,9 +19,7 @@
       padding: 20px;
     }
 
-    input[type="text"],[type="number"] {
-      width: 100%;
-    }
+  
 
     button {
       background-color: #4CAF50;
@@ -36,12 +29,6 @@
       cursor: pointer;
       width: 100%;
       margin-bottom: 10px;
-    }
-    button#reset_images{
-      background-color: #555;
-      float:right;
-      width:40%;
-      padding: 5px 5px;
     }
     hr {
       margin-top: 20px;
@@ -66,7 +53,7 @@ canvas {
     background-color: white;
 }
 input {
-    max-width: 80px;
+    max-width: 90px;
 }
 canvas {
     padding: 0;
