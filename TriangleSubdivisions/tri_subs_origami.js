@@ -1,6 +1,6 @@
 // License: CC BY-NC 4.0
 // Created by: www.josvromans.com
-SCALE = 3;
+SCALE = 6;
 OUTER_FRAME = [];  // just the square around the artwork, can be colored in a seperate color
 LAYER1 = [];
 LAYER2 = [];
@@ -25,9 +25,6 @@ vtoh=_=>{
 }
 
 
-//ALL_LINES = []; // populate with the lines for each layer
-
-
 function get_frame_lines(tl, tr, br, bl, extra){
     return [
         [[tl[0]-extra, tl[1]-extra], [tr[0]+extra, tr[1]-extra]],
@@ -40,16 +37,18 @@ round2=v=>v.toFixed(2);
 convert_co=(co)=>[round2(co[0]), round2(co[1])]
 
 function clear_canvas(ctx, canvas){
+    canvas.width  = PAPER_DIMENSIONS_MM*SCALE;
+    canvas.height = PAPER_DIMENSIONS_MM*SCALE;
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 
-function get_midpoint(point_a, point_b, divisor){
-    var diff_x = (point_b[0] - point_a[0]) / divisor;
-    var diff_y = (point_b[1] - point_a[1]) / divisor;
-
-    return [point_a[0] + diff_x, point_a[1] + diff_y];
+function get_midpoint(a,b){
+    return [
+      (a[0] + b[0]) / 2,
+      (a[1] + b[1]) / 2,
+    ];
 }
 
 
@@ -69,8 +68,8 @@ function parse_strategy(strategy_string){
 function triangle_subdivision(ctx, canvas){
     var iterations = document.getElementById('iterations').value;
     var strategy = parse_strategy(document.getElementById('strategy').value);
+    PAPER_DIMENSIONS_MM = document.getElementById('dimensionsMM').value;
     clear_canvas(ctx, canvas);
-    var divisor = 2; //parseFloat(document.getElementById('divisor').value);
     var color0 = document.getElementById('color0').value;
     var color1 = document.getElementById('color1').value;
     var color2 = document.getElementById('color2').value;
@@ -99,8 +98,6 @@ function triangle_subdivision(ctx, canvas){
     var bottom_left = [one4th,three4th];
     var bottom_right = [three4th,three4th];
 
-//    alert(top_left);
-
     // the outer frame, double lines in black
     OUTER_FRAME = get_frame_lines(top_left, top_right, bottom_right, bottom_left, 1);
     if (!document.getElementById('cb0').checked){
@@ -117,7 +114,7 @@ function triangle_subdivision(ctx, canvas){
         if (i < iterations) {
             var subdivide_index = strategy[i % strategy_length];
             var subdivide_vertex = vertices.splice(subdivide_index, 1)[0];
-            var midpoint = get_midpoint(vertices[0], vertices[1], divisor);
+            var midpoint = get_midpoint(vertices[0], vertices[1]);
             subdivide(ctx, [subdivide_vertex, midpoint, vertices[0]], i + 1);
             subdivide(ctx, [subdivide_vertex, midpoint, vertices[1]], i + 1);
 
@@ -160,41 +157,6 @@ function triangle_subdivision(ctx, canvas){
         ctx.strokeStyle=COLORS[i];
         LAYERS[i].forEach(pl=>{ctx.beginPath();ctx.moveTo(pl[0][0]*SCALE, pl[0][1]*SCALE);ctx.lineTo(pl[1][0]*SCALE, pl[1][1]*SCALE);ctx.stroke();})
     }
-
-
-//    console.log(constructSVGpath(OUTER_FRAME, '#000'));
-
-//    let one4th = PAPER_DIMENSIONS_MM/4;
-//    let three4th = one4th *3;
-
-//
-//    let oriA = [0,0];
-//    let oriB = [PAPER_DIMENSIONS_MM,0];
-//    let oriC = [PAPER_DIMENSIONS_MM,PAPER_DIMENSIONS_MM];
-//    let oriD = [0,PAPER_DIMENSIONS_MM];
-//    ctx.lineWidth=5;
-//    ctx.strokeStyle='red';
-//    ctx.beginPath();
-//    ctx.moveTo(oriA[0]*SCALE, oriA[1]*SCALE);
-//    ctx.lineTo(oriB[0]*SCALE, oriB[1]*SCALE);
-//    ctx.lineTo(oriC[0]*SCALE, oriC[1]*SCALE);
-//    ctx.lineTo(oriD[0]*SCALE, oriD[1]*SCALE);
-//    ctx.stroke();
-    
-//
-//    let oriAi = [one4th,one4th];
-//    let oriBi = [three4th,one4th];
-//    let oriCi = [three4th,three4th];
-//    let oriDi = [one4th,three4th];
-//    ctx.lineWidth=5;
-//    ctx.strokeStyle='black';
-//    ctx.beginPath();
-//    ctx.moveTo(oriAi[0]*SCALE, oriAi[1]*SCALE);
-//    ctx.lineTo(oriBi[0]*SCALE, oriBi[1]*SCALE);
-//    ctx.lineTo(oriCi[0]*SCALE, oriCi[1]*SCALE);
-//    ctx.lineTo(oriDi[0]*SCALE, oriDi[1]*SCALE);
-//    ctx.closePath();
-//    ctx.stroke();
 }
 
 function get_random_strategy(){
@@ -252,8 +214,8 @@ function download_svg_file() {
 document.addEventListener('DOMContentLoaded', function(event) {
     var canvas = document.getElementById('canvas');
 
-    canvas.width  = 210*SCALE;
-    canvas.height = 297*SCALE;
+    canvas.width  = PAPER_DIMENSIONS_MM*SCALE;
+    canvas.height = PAPER_DIMENSIONS_MM*SCALE;
     var ctx = canvas.getContext('2d');
     ctx.lineJoin='round'
 
