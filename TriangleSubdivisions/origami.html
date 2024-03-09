@@ -9,72 +9,97 @@
 </head>
 <body>
 
-
-<div id="sidebar">
+  <div id="sidebar">
 
     <h3>Triangle Subdivisions</h3>
     
-    <table>
+    <div id="control-panel">
     
-    
-    <tr><td><label for="dimensionsMM">Paper Dimensions (mm)</label></td><td><input type="number" placeholder="150" step="1" min="20" max="999" value="150" id="dimensionsMM"></td></tr>
-    
-    
-    <tr><td><label for="line_width">Line Width</label></td><td><input type="number" placeholder=".45" step=".01" min=".01" max="9" value=".45" id="line_width"></td></tr>
-    
-    
-    <tr>
-      <td><label for="iterations">Iterations</label></td>
-      <td><input type="number" placeholder="10" step="1" min="1" max="20" value="7" id="iterations"><td>
-    </tr>
-    
-    <tr>
-      <td><label for="strategy">Strategy</label></td>
-      <td><input id="strategy" value="0120110"><td>
-    </tr>
-    <tr>
-    <td></td>
-    <td><button id="random" title="Re-generate with a random strategy.">Random Strategy</button></td>
-    </tr>
-     
-    
-    <tr>
-    	<td>Line Colors:</td>
-    	<td><button id="randomColors" title="Randomize the colors of the lines.">Randomize Colors</button></td>
-    </tr>
-    <tr><td><input id="color0" type="color" value="#000000"/></td><td><input type="checkbox" id="cb0" checked>0</td></tr>
-    <tr><td><input id="color1" type="color" value="#000000"/></td><td><input type="checkbox" id="cb1" checked>1</td></tr>
-    <tr><td><input id="color2" type="color" value="#000000"/></td><td><input type="checkbox" id="cb2" checked>2</td></tr>
-    <tr><td><input id="color3" type="color" value="#000000"/></td><td><input type="checkbox" id="cb3" checked>3</td></tr>
-    
-    <tr><td><input id="color4" type="color" value="#000000"/></td><td><input type="checkbox" id="cb4" checked>4</td></tr>
-    
-    <tr><td><input id="color5" type="color" value="#000000"/></td><td><input type="checkbox" id="cb5" checked>5</td></tr>
+      <div id="params-panel">
+
+        <span id="dimensions-span" class="param">
+          <label for="dimensionsMM">Paper Dimensions (mm):</label>
+          <input class="panel-input" type="number" placeholder="150" step="1" min="20" max="999" value="150" id="dimensionsMM">
+        </span>
         
-    
-    </table>
+        <span id="line-width-span" class="param">
+          <label for="line_width">Line Width:</label>
+          <input class="panel-input" type="number" placeholder=".45" step=".01" min=".01" max="9" value=".45" id="line_width">
+        </span>
+        
+        <span id="iterations-span" class="param">
+          <label for="iterations">Iterations:</label>
+          <input  class="panel-input" type="number" placeholder="10" step="1" min="1" max="20" value="7" id="iterations">
+        </span>
+        
+        <span id="strategy-span" class="param">
+          <label for="strategy">Strategy:</label>
+          <input class="panel-input" id="strategy" value="0120110">
+        </span>
+        
+        <button id="random" title="Re-generate with a random strategy.">Random Strategy</button>
+      </div>
       
+      <div id="color-panel">
+        <span class="colors-header">
+          <h4 id="colors-header-title">Line Colors:</h4>
+          <button id="randomColors" title="Randomize the colors of the lines.">Randomize Colors</button>
+        </span>
+
+        <span class="color-input-span">
+          <input id="color0" class="color-input" type="color" value="#000000"/>
+          <input class="color-toggle" type="checkbox" name="cb0" id="cb0" checked>
+          <label class="toggle-label" for="cb0"></label>
+        </span>
+
+        <span class="color-input-span">
+          <input id="color1" class="color-input" type="color" value="#000000"/>
+          <input class="color-toggle" type="checkbox" name="cb1" id="cb1" checked>
+          <label class="toggle-label" for="cb1"></label>
+        </span>
+
+        <span class="color-input-span">
+          <input id="color2" class="color-input" type="color" value="#000000"/>
+          <input class="color-toggle" type="checkbox" name="cb2" id="cb2" checked>
+          <label class="toggle-label" for="cb2"></label>
+        </span>
+
+        <span class="color-input-span">
+          <input id="color3" class="color-input" type="color" value="#000000"/>
+          <input class="color-toggle" type="checkbox" name="cb3" id="cb3" checked>
+          <label class="toggle-label" for="cb3"></label>
+        </span>
+        
+        <span class="color-input-span">
+          <input id="color4" class="color-input" type="color" value="#000000"/>
+          <input class="color-toggle" type="checkbox" name="cb4" id="cb4" checked>
+          <label class="toggle-label" for="cb4"></label>
+        </span>
+        
+        <span class="color-input-span">
+          <input id="color5" class="color-input" type="color" value="#000000"/>
+          <input class="color-toggle" type="checkbox" name="cb5" id="cb5" checked>
+          <label class="toggle-label" for="cb5"></label>
+        </span>
+      </div>
       
-      <hr>
-           <div class="buttons">
-            <button id="start" title="Generate the subdivision. Keyboard shortcut: <ENTER>">Generate</button>
-            
+      <div class="buttons">
+        <button id="start" title="Generate the subdivision. Keyboard shortcut: <ENTER>">Generate</button>
+        
+        <div id="save-buttons">
+          <button id="download" title="Save the current canvas as a png image.">Save Image</button>
+          <button id="download_svg" title="Save the current plot as several SVG files." onclick="download_svg_file()">Save SVGs</button>
+        </div>
+        <span class="footer">&#169; <a href="http://www.josvromans.com">www.josvromans.com</a></span>
+      </div>  
+      
 
-            
-            <button id="download" title="Save the current canvas as a png image.">Save Image</button>
-            <button id="download_svg" title="Save the current plot as several SVG files." onclick="download_svg_file()">Save SVGs</button>
-        </div>  
-       
-       <a id="link"></a>
-       <small><i>
-        <footer class="footer">&#169; <a href="http://www.josvromans.com">www.josvromans.com</a></footer>
-    </i></small>
-</div>
-
-
-    <div style="width: 100%;">
-        <canvas id="canvas"></canvas>
     </div>
+  </div>
+
+  <!-- <div style="width: 100%;"> -->
+    <canvas id="canvas"></canvas>
+  <!-- </div> -->
 
 </body>
 </html>
