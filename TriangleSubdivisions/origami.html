@@ -8,7 +8,7 @@
     <script src="tri_subs_origami.js"></script>
 </head>
 <body>
-
+  <button id="sidebar-toggle"></button>
   <div id="sidebar">
 
     <h3>Triangle Subdivisions</h3>
@@ -17,20 +17,29 @@
     
       <div id="params-panel">
 
-        <span id="dimensions-span" class="param">
+        <div id="dimensions-span" class="param">
           <label for="dimensionsMM">Paper Dimensions (mm):</label>
-          <input class="panel-input" type="number" placeholder="150" step="1" min="20" max="999" value="150" id="dimensionsMM">
-        </span>
+          <div class="panel-inputs">
+            <input class="panel-input" type="number" placeholder="150" step="1" min="20" max="999" value="150" id="dimensionsMM">
+            <input class="panel-range" type="range" placeholder="150" step="1" min="20" max="999" value="150" id="dimensionsMM-range">
+          </div>
+        </div>
         
-        <span id="line-width-span" class="param">
+        <div id="line-width-span" class="param">
           <label for="line_width">Line Width:</label>
-          <input class="panel-input" type="number" placeholder=".45" step=".01" min=".01" max="9" value=".45" id="line_width">
-        </span>
+          <div class="panel-inputs">
+            <input class="panel-input" type="number" placeholder=".45" step=".01" min=".01" max="9" value=".45" id="line_width">
+            <input class="panel-range" type="range" placeholder=".45" step=".01" min=".01" max="9" value=".45" id="line_width-range">
+          </div>
+        </div>
         
-        <span id="iterations-span" class="param">
+        <div id="iterations-span" class="param">
           <label for="iterations">Iterations:</label>
-          <input  class="panel-input" type="number" placeholder="10" step="1" min="1" max="20" value="7" id="iterations">
-        </span>
+          <div class="panel-inputs">
+            <input  class="panel-input" type="number" placeholder="10" step="1" min="1" max="20" value="7" id="iterations">
+            <input  class="panel-range" type="range" placeholder="10" step="1" min="1" max="20" value="7" id="iterations-range">
+          </div>
+        </div>
         
         <span id="strategy-span" class="param">
           <label for="strategy">Strategy:</label>
@@ -47,39 +56,69 @@
         </span>
 
         <span class="color-input-span">
-          <input id="color0" class="color-input" type="color" value="#000000"/>
+          <label class="color-input-label" for="color0">
+            <input id="color0" class="color-input" type="color" value="#000000"/>
+
+          </label>
           <input class="color-toggle" type="checkbox" name="cb0" id="cb0" checked>
-          <label class="toggle-label" for="cb0"></label>
+          <label class="toggle-label" for="cb0">
+            <img class="toggle-checkmark" src="./check-box.png"></img>
+          </label>
         </span>
 
         <span class="color-input-span">
-          <input id="color1" class="color-input" type="color" value="#000000"/>
+          <label class="color-input-label" for="color1">
+            <input id="color1" class="color-input" type="color" value="#000000"/>
+
+          </label>
           <input class="color-toggle" type="checkbox" name="cb1" id="cb1" checked>
-          <label class="toggle-label" for="cb1"></label>
+          <label class="toggle-label" for="cb1">
+            <img class="toggle-checkmark" src="./check-box.png"></img>
+          </label>
         </span>
 
         <span class="color-input-span">
-          <input id="color2" class="color-input" type="color" value="#000000"/>
+          <label class="color-input-label" for="color2">
+            <input id="color2" class="color-input" type="color" value="#000000"/>
+
+          </label>
           <input class="color-toggle" type="checkbox" name="cb2" id="cb2" checked>
-          <label class="toggle-label" for="cb2"></label>
+          <label class="toggle-label" for="cb2">
+            <img class="toggle-checkmark" src="./check-box.png"></img>
+          </label>
         </span>
 
         <span class="color-input-span">
-          <input id="color3" class="color-input" type="color" value="#000000"/>
+          <label class="color-input-label" for="color3">
+            <input id="color3" class="color-input" type="color" value="#000000"/>
+
+          </label>
           <input class="color-toggle" type="checkbox" name="cb3" id="cb3" checked>
-          <label class="toggle-label" for="cb3"></label>
+          <label class="toggle-label" for="cb3">
+            <img class="toggle-checkmark" src="./check-box.png"></img>
+          </label>
         </span>
         
         <span class="color-input-span">
-          <input id="color4" class="color-input" type="color" value="#000000"/>
+          <label class="color-input-label" for="color4">
+            <input id="color4" class="color-input" type="color" value="#000000"/>
+
+          </label>
           <input class="color-toggle" type="checkbox" name="cb4" id="cb4" checked>
-          <label class="toggle-label" for="cb4"></label>
+          <label class="toggle-label" for="cb4">
+            <img class="toggle-checkmark" src="./check-box.png"></img>
+          </label>
         </span>
         
         <span class="color-input-span">
-          <input id="color5" class="color-input" type="color" value="#000000"/>
+          <label class="color-input-label" for="color5">
+            <input id="color5" class="color-input" type="color" value="#000000"/>
+
+          </label>
           <input class="color-toggle" type="checkbox" name="cb5" id="cb5" checked>
-          <label class="toggle-label" for="cb5"></label>
+          <label class="toggle-label" for="cb5">
+            <img class="toggle-checkmark" src="./check-box.png"></img>
+          </label>
         </span>
       </div>
       
