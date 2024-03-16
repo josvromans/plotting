@@ -13,6 +13,26 @@ LAYERS = [];
 PAPER_DIMENSIONS_MM = 158
 
 
+function handleMenu() {
+    //mobile sidebar handler
+    
+    const menuToggle = document.getElementById("sidebar-toggle")
+    const menu = document.getElementById('sidebar')
+    console.log(menu)
+    menuToggle.addEventListener('click', ()=>{
+        var style = getComputedStyle(menu)
+        var visibile = style.getPropertyValue('display')
+        
+        if(visibile == 'none') {
+            menu.style.display = 'flex'
+        } else {
+            menu.style.display = 'none'
+        }
+    })
+    
+}
+
+
 
 getRandomInt=_=>Math.random()*256|0;
 
@@ -65,19 +85,48 @@ function parse_strategy(strategy_string){
     return strategy;
 }
 
+
+
 function triangle_subdivision(ctx, canvas){
     var iterations = document.getElementById('iterations').value;
     var strategy = parse_strategy(document.getElementById('strategy').value);
     PAPER_DIMENSIONS_MM = document.getElementById('dimensionsMM').value;
-    clear_canvas(ctx, canvas);
-    var color0 = document.getElementById('color0').value;
-    var color1 = document.getElementById('color1').value;
-    var color2 = document.getElementById('color2').value;
-    var color3 = document.getElementById('color3').value;
-    var color4 = document.getElementById('color4').value;
-    var color5 = document.getElementById('color5').value;
-    var line_width = document.getElementById('line_width').value;
 
+    //manage inputs
+    var rangeInputs = document.getElementsByClassName('panel-range')
+    var numInputs = document.getElementsByClassName('panel-input')
+
+    for(let i = 0; i < rangeInputs.length; i++) {
+        rangeInputs[i].addEventListener('input', ()=> {
+            numInputs[i].value = rangeInputs[i].value
+        })
+        numInputs[i].addEventListener('input', ()=> {
+            rangeInputs[i].value = numInputs[i].value
+        })
+    }
+
+    clear_canvas(ctx, canvas);
+    var colorInput0 = document.getElementById('color0');
+    var colorInput1 = document.getElementById('color1');
+    var colorInput2 = document.getElementById('color2');
+    var colorInput3 = document.getElementById('color3');
+    var colorInput4 = document.getElementById('color4');
+    var colorInput5 = document.getElementById('color5');
+    var color0 = colorInput0.value;
+    var color1 = colorInput1.value;
+    var color2 = colorInput2.value;
+    var color3 = colorInput3.value;
+    var color4 = colorInput4.value;
+    var color5 = colorInput5.value;
+    var line_width = document.getElementById('line_width').value;
+    COLOR_INPUTS = [
+        colorInput0,
+        colorInput1,
+        colorInput2,
+        colorInput3,
+        colorInput4,
+        colorInput5,
+    ]
     COLORS = [
         color0,
         color1,
@@ -86,6 +135,26 @@ function triangle_subdivision(ctx, canvas){
         color4,
         color5,
     ]
+    //initialize color input label color
+    COLOR_INPUTS.map((a)=>{
+        console.log(a.parentElement)
+        var colorLabel = a.parentElement
+        console.log(colorLabel)
+        console.log(a.value)
+        colorLabel.style.backgroundColor = a.value
+        console.log(colorLabel)
+    })
+    //change color input label on change
+    COLOR_INPUTS.map((a)=>{
+        console.log(a.parentElement)
+        var colorLabel = a.parentElement
+        console.log(colorLabel)
+        console.log(a.value)
+        a.addEventListener('change', ()=>{
+            colorLabel.style.backgroundColor = a.value
+            console.log(colorLabel)
+        })
+    })
 
 //    MARGIN = 16;
 
@@ -213,6 +282,7 @@ function download_svg_file() {
 
 document.addEventListener('DOMContentLoaded', function(event) {
     var canvas = document.getElementById('canvas');
+    handleMenu()
 
     canvas.width  = PAPER_DIMENSIONS_MM*SCALE;
     canvas.height = PAPER_DIMENSIONS_MM*SCALE;
